@@ -1,6 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { TabNavigator } from 'react-navigation';
 import Navigator from './navigation/Navigator';
 
 export default class App extends React.Component {
