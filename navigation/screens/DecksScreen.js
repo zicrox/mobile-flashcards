@@ -1,23 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
+import initState from '../../initState';
+
+// console.log(Object.keys(initState));
+// console.log(Object.entries(initState));
+// console.log(Object.values(initState));
 
 export default () => (
   <View style={styles.container}>
     <ScrollView>
-      <View style={styles.deckInfo}>
-        <Text style={styles.textTitle}>Title</Text>
-        <Text style={styles.textInfo}>info</Text>
-      </View>
-      <TouchableOpacity 
-        style={styles.touchableHighlight}
-        activeOpacity={0.5}
-        onPress = { ()=> {console.log("TouchableHighlight")} }
-        >
-        <View style={styles.deckInfo}>
-          <Text style={styles.textTitle}>Title</Text>
-          <Text style={styles.textInfo}>info</Text>
-        </View>
-      </TouchableOpacity>
+      {Object.entries(initState).map((deck) => (
+        <TouchableOpacity 
+          key={deck[0]}
+          style={styles.touchableHighlight}
+          activeOpacity={0.5}
+          onPress = { ()=> {console.log("TouchableHighlight")} }
+          >
+          <View style={styles.deckInfo}>
+            <Text style={styles.textTitle}>{deck[1].title}</Text>
+            <Text style={styles.textInfo}>{deck[1].questions.length} cards</Text>
+          </View>
+        </TouchableOpacity>
+      ))}
     </ScrollView>
   </View>
 );
