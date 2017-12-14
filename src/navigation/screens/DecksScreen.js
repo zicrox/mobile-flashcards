@@ -1,16 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
-import initState from '../../initState';
 
 export default (props) => {
-  // Test concept: Navigator Props
-  // https://reactnavigation.org/docs/navigators/tab#Navigator-Props
-  props.screenProps();
+  
+  // props.screenProps();
+  // console.log(props);
   
   return (
     <View style={styles.container}>
       <ScrollView>
-        {Object.entries(initState).map((deck) => (
+        {Object.entries(props.screenProps.state).map((deck) => (
           <TouchableOpacity 
             key={deck[0]}
             style={styles.touchableHighlight}

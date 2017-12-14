@@ -1,10 +1,10 @@
 import React from 'react';
 import Navigator from './src/navigation/Navigator';
+import initState from './src/initState';
 
-export default class App extends React.Component {
+export default class App extends React.Component {  
+  state = initState;
   
-  // Test concept: Navigator Props
-  // https://reactnavigation.org/docs/navigators/tab#Navigator-Props
   getDecks = () => {
     console.log('call getDecks');
   }
@@ -12,17 +12,11 @@ export default class App extends React.Component {
   render() {
     return (
       <Navigator 
-        screenProps={this.getDecks}
+        screenProps={{
+          state: this.state,
+          getDecks: this.getDecks
+        }}
       />
     );
   }
 }
-
-// It is seems that expo do not allow "functional component" for the "registerRootComponent"
-// https://docs.expo.io/versions/latest/sdk/register-root-component.html
-
-// export default () => (
-//   <View style={styles.container}>
-//     <Navigator />
-//   </View>
-// );
