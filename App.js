@@ -2,9 +2,18 @@ import React from 'react';
 import Navigator from './src/navigation/Navigator';
 
 export default class App extends React.Component {
+  
+  // Test concept: Navigator Props
+  // https://reactnavigation.org/docs/navigators/tab#Navigator-Props
+  getDecks = () => {
+    console.log('call getDecks');
+  }
+  
   render() {
     return (
-      <Navigator />
+      <Navigator 
+        screenProps={this.getDecks}
+      />
     );
   }
 }
