@@ -6,20 +6,28 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  Button
+  Button,
+  Alert
 } from 'react-native';
 
 export default class UselessTextInput extends React.Component {
   state = { textInput: 'Deck Title' };
   
-  changeInput = (textInput) => {
-    this.setState({textInput: textInput});
-    // console.log(this.props.screenProps);
+  submit = () => {
+    if(this.props.screenProps.addDeck({title: this.state.textInput})) {
+      Keyboard.dismiss();
+      // Timeout for dismiss the damned keyboard
+      setTimeout(() => {
+        Alert.alert('New deck created', '',[{onPress: () => this.props.navigation.navigate('Decks')}]);
+      }, 300);
+    } else {
+      Alert.alert('This deck arleady exist');
+    }
   }
   
   render() {
     return (
-      <TouchableWithoutFeedback onPress = { () => Keyboard.dismiss() }>
+      <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <View style={styles.containerTitle}>
             <Text style={styles.textTitle}>What is the title of your new deck?</Text>
@@ -27,13 +35,13 @@ export default class UselessTextInput extends React.Component {
           <View style={{padding: 20}}>
             <TextInput
               style={styles.textInput}
-              onChangeText={(textInput) => this.changeInput(textInput)}
+              onChangeText={(textInput) => this.setState({textInput: textInput})}
               value={this.state.textInput}
             />
           </View>
           <View style={{padding: 5, backgroundColor: '#FBEBF3' }}>
             <Button
-              onPress={ () => console.log("press") }
+              onPress={this.submit}
               title="Submit"
             />
           </View>

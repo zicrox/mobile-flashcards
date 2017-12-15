@@ -5,8 +5,15 @@ import initState from './src/initState';
 export default class App extends React.Component {  
   state = initState;
   
-  getDecks = () => {
-    console.log('call getDecks');
+  addDeck = (data) => {
+    if(this.state[data.title]){
+      // The deck arleady exist
+      return false;
+    }
+    // Add new deck
+    data.questions = [];
+    this.setState({[data.title]: data})
+    return true;
   }
   
   render() {
@@ -14,7 +21,7 @@ export default class App extends React.Component {
       <Navigator 
         screenProps={{
           state: this.state,
-          getDecks: this.getDecks
+          addDeck: this.addDeck
         }}
       />
     );
