@@ -12,7 +12,7 @@ export default class App extends React.Component {
     }
     // Add new deck
     data.questions = [];
-    this.setState({[data.title]: data})
+    this.setState({[data.title]: data});
     return true;
   }
   
@@ -20,8 +20,8 @@ export default class App extends React.Component {
     return (
       <Navigator 
         screenProps={{
-          state: this.state,
-          addDeck: this.addDeck
+          state   : this.state,
+          addDeck : this.addDeck,
         }}
       />
     );

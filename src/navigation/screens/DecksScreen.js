@@ -10,8 +10,8 @@ import {
 
 export default (props) => {
   
-  // props.screenProps();
-  // console.log(props);
+  // console.log(props.screenProps);
+  // console.log(Object.keys(props.screenProps));
   
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ export default (props) => {
           {Object.entries(props.screenProps.state).map((deck) => (
             <TouchableOpacity 
               key={deck[0]}
-              style={styles.touchableHighlight}
+              style={styles.touchableOpacity}
               activeOpacity={0.5}
               onPress = {() => console.log("TouchableHighlight")}
               >
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     padding: 5,
   },
-  touchableHighlight: {
+  touchableOpacity: {
     backgroundColor: '#ABCDEF',
   },
 });

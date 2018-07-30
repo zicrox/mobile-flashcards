@@ -11,9 +11,17 @@ import {
 } from 'react-native';
 
 export default class UselessTextInput extends React.Component {
-  state = { textInput: 'Deck Title' };
+  state = { textInput  : 'Deck Title',
+            focusInput : false,
+          };
   
   submit = () => {
+    console.log(this.state.textInput.replace(/^\s+/g, '').length);
+    console.log(this.state.focusInput);
+    if(!this.state.focusInput || !this.state.textInput.replace(/^\s+/g, '').length){
+      Alert.alert('Deck Title is required');
+      return;
+    }
     if(this.props.screenProps.addDeck({title: this.state.textInput})) {
       Keyboard.dismiss();
       // Timeout for dismiss the damned keyboard
@@ -36,10 +44,11 @@ export default class UselessTextInput extends React.Component {
             <TextInput
               style={styles.textInput}
               onChangeText={(textInput) => this.setState({textInput: textInput})}
+              onFocus={() => this.setState({textInput: '', focusInput: true})}
               value={this.state.textInput}
             />
           </View>
-          <View style={{padding: 5, backgroundColor: '#FBEBF3' }}>
+          <View style={styles.submitButton}>
             <Button
               onPress={this.submit}
               title="Submit"
@@ -72,5 +81,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     backgroundColor: '#FBEBF3',
     paddingLeft: 10,
+  },
+  submitButton: {
+    padding: 5,
+    backgroundColor: '#FBEBF3'
   },
 });
