@@ -1,2 +1,3 @@
-export DecksScreen from './DecksScreen'
+export DecksListScreen from './DecksListScreen'
+export DeckDetailScreen from './DeckDetailScreen'
 export NewDeckScreen from './NewDeckScreen'

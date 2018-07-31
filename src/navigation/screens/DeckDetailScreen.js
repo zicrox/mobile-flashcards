@@ -19,21 +19,7 @@ export default (props) => {
         <Text style={styles.textTitle}>Your decks list</Text>
       </View>
       <View style={styles.container}>
-        <ScrollView>
-          {Object.entries(props.screenProps.state).map((deck) => (
-            <TouchableOpacity 
-              key={deck[0]}
-              style={styles.touchableOpacity}
-              activeOpacity={0.5}
-              onPress = {() => console.log("TouchableHighlight")}
-              >
-              <View style={styles.deckInfo}>
-                <Text style={styles.textTitle}>{deck[1].title}</Text>
-                <Text style={styles.textInfo}>{deck[1].questions.length} cards</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        
       </View>
     </View>
   )

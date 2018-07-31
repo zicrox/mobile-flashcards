@@ -16,8 +16,6 @@ export default class UselessTextInput extends React.Component {
           };
   
   submit = () => {
-    console.log(this.state.textInput.replace(/^\s+/g, '').length);
-    console.log(this.state.focusInput);
     if(!this.state.focusInput || !this.state.textInput.replace(/^\s+/g, '').length){
       Alert.alert('Deck Title is required');
       return;
@@ -26,7 +24,7 @@ export default class UselessTextInput extends React.Component {
       Keyboard.dismiss();
       // Timeout for dismiss the damned keyboard
       setTimeout(() => {
-        Alert.alert('New deck created', '',[{onPress: () => this.props.navigation.navigate('Decks')}]);
+        Alert.alert('New deck created', '',[{onPress: () => this.props.navigation.navigate('DecksList')}]);
       }, 300);
     } else {
       Alert.alert('This deck arleady exist');

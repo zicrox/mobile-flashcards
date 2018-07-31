@@ -1,12 +1,18 @@
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import {
-  DecksScreen,
+  DecksListScreen,
   NewDeckScreen,
+  DeckDetailScreen,
 } from './screens';
 
+const DecksScreen = StackNavigator({
+  DecksList : { screen: DecksListScreen },
+  DeckDetail : { screen: DeckDetailScreen },
+});
+
 const navigator = TabNavigator({
-  Decks : { screen: DecksScreen },
-  NewDeck : { screen: NewDeckScreen }
+  DecksList : { screen: DecksListScreen },
+  NewDeck   : { screen: NewDeckScreen },
 });
 
 export default navigator;
