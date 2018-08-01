@@ -7,22 +7,43 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
+// import { Ionicons } from '@expo/vector-icons';
 
-export default (props) => {
+export default class DeckDetailScreen extends React.Component {
   
-  // console.log(props.screenProps);
-  // console.log(Object.keys(props.screenProps));
+  static navigationOptions = {
+    title: 'Deck detail',
+    headerStyle: {
+      backgroundColor: '#6b6be3',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  }
   
-  return (
-    <View style={styles.container}>
-      <View style={{alignItems: 'center', paddingTop: 10}}>
-        <Text style={styles.textTitle}>Your decks list</Text>
-      </View>
+  getNavigationParams = () => this.props.navigation.state.params || {};
+  
+  componentDidMount(){
+    // console.log(props.screenProps);
+    // console.log(Object.keys(props.screenProps));
+    // console.log(this.props);
+    // console.log(this.getNavigationParams());
+  }
+  
+  render() {
+    return (
       <View style={styles.container}>
-        
+        {/* <View style={{alignItems: 'center', paddingTop: 10}}>
+          <Text style={styles.textTitle}>Your decks list</Text>
+        </View> */}
+        <View style={styles.deckInfo}>
+          <Text style={styles.textTitle}>{this.getNavigationParams().deck[1].title}</Text>
+          <Text style={styles.textInfo}>{this.getNavigationParams().deck[1].questions.length} cards</Text>
+        </View>
       </View>
-    </View>
-  )
+    )
+  }
 };
 
 const styles = StyleSheet.create({

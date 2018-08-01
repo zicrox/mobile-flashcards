@@ -6,12 +6,12 @@ import {
 } from './screens';
 
 const DecksScreen = StackNavigator({
-  DecksList : { screen: DecksListScreen },
+  DecksList  : { screen: DecksListScreen },
   DeckDetail : { screen: DeckDetailScreen },
 });
 
 const navigator = TabNavigator({
-  DecksList : { screen: DecksListScreen },
+  DecksList : { screen: DecksScreen },
   NewDeck   : { screen: NewDeckScreen },
 });
 
