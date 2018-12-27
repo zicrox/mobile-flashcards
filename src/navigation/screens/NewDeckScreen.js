@@ -9,11 +9,20 @@ import {
   Button,
   Alert
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class UselessTextInput extends React.Component {
-  state = { textInput  : 'Deck Title',
-            focusInput : false,
-          };
+  static navigationOptions = {
+    title: 'New Deck',
+    tabBarIcon: ({ tintColor }) => (
+      <Ionicons name="ios-add" size={26} color={tintColor} />
+    )
+  };
+  
+  state = { 
+    textInput  : 'Deck Title',
+    focusInput : false,
+  };
   
   submit = () => {
     if(!this.state.focusInput || !this.state.textInput.replace(/^\s+/g, '').length){
