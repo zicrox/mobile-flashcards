@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
-// import { Ionicons } from '@expo/vector-icons';
 
 export default class DeckDetailScreen extends React.Component {
   
@@ -22,13 +21,15 @@ export default class DeckDetailScreen extends React.Component {
     },
   }
   
-  getNavigationParams = () => this.props.navigation.state.params || {};
+  // In React navigation v1
+  // getNavigationParams = () => this.props.navigation.state.params || {};
+  
+  // In React navigation v2 with "getParam"
+  getNavParamDeck = this.props.navigation.getParam('deck')[1];
   
   componentDidMount(){
-    // console.log(props.screenProps);
+    // console.log(this.props.screenProps);
     // console.log(Object.keys(props.screenProps));
-    // console.log(this.props);
-    // console.log(this.getNavigationParams());
   }
   
   render() {
@@ -36,8 +37,8 @@ export default class DeckDetailScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.deck}>
           <View style={styles.deckInfo}>
-            <Text style={styles.textTitle}>{this.getNavigationParams().deck[1].title}</Text>
-            <Text style={styles.textInfo}>{this.getNavigationParams().deck[1].questions.length} cards</Text>
+            <Text style={styles.textTitle}>{this.getNavParamDeck.title}</Text>
+            <Text style={styles.textInfo}>{this.getNavParamDeck.questions.length} cards</Text>
           </View>
           <View style={styles.actionButtons}>
             <Button
@@ -77,7 +78,6 @@ const styles = StyleSheet.create({
     margin: 10,
     marginLeft: 15,
     marginRight: 15,
-    padding: 5,
   },
   touchableOpacity: {
     backgroundColor: '#ABCDEF',
@@ -89,10 +89,11 @@ const styles = StyleSheet.create({
   },
   actionButtons: {
     flex: 1,
-    // alignItems: 'stretch', // NOTE why
+    flexDirection: 'row',
+    alignItems: 'flex-end', // NOTE why
     alignSelf: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     padding: 5,
-    backgroundColor: '#FBEBF3'
+    // backgroundColor: '#FBEBF3',
   },
 });
