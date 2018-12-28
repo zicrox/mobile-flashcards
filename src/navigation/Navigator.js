@@ -2,7 +2,9 @@
 // DOCS: Navigation options resolution (How this works when there are multiple navigators)
 // https://reactnavigation.org/docs/en/2.x/navigation-options-resolution.html#a-tab-navigator-contains-a-stack-and-you-want-to-hide-the-tab-bar-on-specific-screens
 
-import { 
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import {
   createBottomTabNavigator, 
   createStackNavigator 
 } from 'react-navigation';
@@ -16,8 +18,11 @@ const DecksScreen = createStackNavigator({
   DecksList  : { screen: DecksListScreen },
   DeckDetail : { screen: DeckDetailScreen },
 });
-DecksScreen.navigationOptions = {
-  tabBarLabel: 'Decks',
+DecksScreen.navigationOptions = ({ navigation }) => {
+  const tabBarLabel = 'Decks';
+  const tabBarIcon = ({ tintColor }) => (<Ionicons name="ios-list" size={26} color={tintColor} />)
+  const tabBarVisible = navigation.state.index > 0 ? false : true; // hide the tab bar if navigate away from first screen of the stack
+  return { tabBarLabel, tabBarIcon, tabBarVisible };
 };
 // NOTE: The navigationOptions property vs configuration
 // https://reactnavigation.org/docs/en/2.x/navigation-options-resolution.html#caution-the-navigationoptions-property-vs-configuration

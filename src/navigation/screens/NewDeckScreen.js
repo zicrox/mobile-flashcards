@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default class UselessTextInput extends React.Component {
+export default class NewDeckScreen extends React.Component {
   static navigationOptions = {
     title: 'New Deck',
     tabBarIcon: ({ tintColor }) => (
