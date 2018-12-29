@@ -4,28 +4,19 @@ import {
   Text,
   View,
   Button,
-  ScrollView,
-  TouchableOpacity
 } from 'react-native';
 
 export default class DeckDetailScreen extends React.Component {
   
   static navigationOptions = {
-    title: 'Deck detail',
-    headerStyle: {
-      backgroundColor: '#6b6be3',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+    headerTitle: 'Deck detail',
   }
   
   // In React navigation v1
   // getNavigationParams = () => this.props.navigation.state.params || {};
   
   // In React navigation v2 with "getParam"
-  getNavParamDeck = this.props.navigation.getParam('deck')[1];
+  getNavParamDeck = this.props.navigation.getParam('deck');
   
   componentDidMount(){
     // console.log(this.props.screenProps);
@@ -42,11 +33,11 @@ export default class DeckDetailScreen extends React.Component {
           </View>
           <View style={styles.actionButtons}>
             <Button
-              onPress={()=>console.log("go Add card")}
+              onPress={() => console.log("go Add card")}
               title="Add card"
             />
             <Button
-              onPress={()=>console.log("go Start Quiz")}
+              onPress={() => this.props.navigation.navigate('QuizScreen', { 'deck': this.getNavParamDeck })}
               title="Start Quiz"
             />
           </View>
@@ -79,9 +70,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
   },
-  touchableOpacity: {
-    backgroundColor: '#ABCDEF',
-  },
   deckInfo: {
     flex: 1,
     alignItems: 'center',
@@ -90,7 +78,7 @@ const styles = StyleSheet.create({
   actionButtons: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'flex-end', // NOTE why
+    alignItems: 'flex-end',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
     padding: 5,

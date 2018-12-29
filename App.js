@@ -18,7 +18,8 @@ export default class App extends React.Component {
   
   render() {
     return (
-      <Navigator 
+      <Navigator
+        // screenProps are common to all screens nested in this "Navigator"
         screenProps={{
           state   : this.state,
           addDeck : this.addDeck,

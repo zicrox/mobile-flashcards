@@ -12,11 +12,28 @@ import {
   DecksListScreen,
   NewDeckScreen,
   DeckDetailScreen,
+  QuizScreen
 } from './screens';
 
 const DecksScreen = createStackNavigator({
   DecksList  : { screen: DecksListScreen },
   DeckDetail : { screen: DeckDetailScreen },
+  QuizScreen : { screen: QuizScreen },
+},
+{
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#b99ad8',
+    },
+    // headerTintColor: '#fff',
+    headerTitleStyle: {
+      // fontWeight: 'bold',
+      color: 'white'
+    },
+    // headerBackTitleStyle: {
+    //   color: 'green',
+    // },
+  },
 });
 DecksScreen.navigationOptions = ({ navigation }) => {
   const tabBarLabel = 'Decks';

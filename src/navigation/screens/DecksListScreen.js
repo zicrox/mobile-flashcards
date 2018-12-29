@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-DecksListScreen = (props) => (
+export default DecksListScreen = (props) => (
   <View style={styles.container}>
     {/* <View style={{alignItems: 'center', paddingTop: 10}}>
       <Text style={styles.textTitle}>Your decks list</Text>
@@ -20,7 +20,7 @@ DecksListScreen = (props) => (
             key={deck[0]}
             style={styles.touchableOpacity}
             activeOpacity={0.5}
-            onPress = {() => props.navigation.navigate('DeckDetail', { 'deck': deck })}
+            onPress = {() => props.navigation.navigate('DeckDetail', { 'deck': deck[1] })}
             >
             <View style={styles.deckInfo}>
               <Text style={styles.textTitle}>{deck[1].title}</Text>
@@ -34,14 +34,7 @@ DecksListScreen = (props) => (
 );
 
 DecksListScreen.navigationOptions = {
-  title: 'Decks',
-  headerStyle: {
-    backgroundColor: '#6b6be3',
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-  },
+  headerTitle: 'Decks',
 }
 
 const styles = StyleSheet.create({
@@ -71,5 +64,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#ABCDEF',
   },
 });
-
-export default DecksListScreen;
