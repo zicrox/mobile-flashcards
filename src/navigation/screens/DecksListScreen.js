@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     color: 'grey',
   },
   deckInfo: {
-    flex: 1,
     backgroundColor: '#DDEBF8',
     alignItems: 'center',
     margin: 10,

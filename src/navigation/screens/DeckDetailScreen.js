@@ -76,12 +76,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   actionButtons: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-end',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
     padding: 5,
-    // backgroundColor: '#FBEBF3',
+    backgroundColor: '#FBEBF3',
   },
 });
