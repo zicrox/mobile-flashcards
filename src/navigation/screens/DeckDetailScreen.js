@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Button,
+  Alert,
 } from 'react-native';
 
 export default class DeckDetailScreen extends React.Component {
@@ -18,9 +19,10 @@ export default class DeckDetailScreen extends React.Component {
   // In React navigation v2 with "getParam"
   getNavParamDeck = this.props.navigation.getParam('deck');
   
-  componentDidMount(){
-    // console.log(this.props.screenProps);
-    // console.log(Object.keys(props.screenProps));
+  onStartQuiz = () => {
+    this.getNavParamDeck.questions.length ?
+      this.props.navigation.navigate('QuizScreen', { 'deck': this.getNavParamDeck }) :
+      Alert.alert('This deck do not have cards');
   }
   
   render() {
@@ -37,7 +39,7 @@ export default class DeckDetailScreen extends React.Component {
               title="Add card"
             />
             <Button
-              onPress={() => this.props.navigation.navigate('QuizScreen', { 'deck': this.getNavParamDeck })}
+              onPress={this.onStartQuiz}
               title="Start Quiz"
             />
           </View>
