@@ -7,47 +7,45 @@ import {
   Alert,
 } from 'react-native';
 
-export default class DeckDetailScreen extends React.Component {
-  
-  static navigationOptions = {
-    headerTitle: 'Deck detail',
-  }
+export default DeckDetailScreen = (props) => {
   
   // In React navigation v1
   // getNavigationParams = () => this.props.navigation.state.params || {};
   
   // In React navigation v2 with "getParam"
-  getNavParamDeck = this.props.navigation.getParam('deck');
+  const navParamDeck = props.navigation.getParam('deck');
   
-  onStartQuiz = () => {
-    this.getNavParamDeck.questions.length ?
-      this.props.navigation.navigate('QuizScreen', { 'deck': this.getNavParamDeck }) :
+  const onStartQuiz = () => {
+    navParamDeck.questions.length ?
+      props.navigation.navigate('QuizScreen', { 'deck': navParamDeck }) :
       Alert.alert('This deck do not have cards');
   }
   
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.deck}>
-          <View style={styles.deckInfo}>
-            <Text style={styles.textTitle}>{this.getNavParamDeck.title}</Text>
-            <Text style={styles.textInfo}>{this.getNavParamDeck.questions.length} cards</Text>
-          </View>
-          <View style={styles.actionButtons}>
-            <Button
-              onPress={() => console.log("go Add card")}
-              title="Add card"
-            />
-            <Button
-              onPress={this.onStartQuiz}
-              title="Start Quiz"
-            />
-          </View>
+  return (
+    <View style={styles.container}>
+      <View style={styles.deck}>
+        <View style={styles.deckInfo}>
+          <Text style={styles.textTitle}>{navParamDeck.title}</Text>
+          <Text style={styles.textInfo}>{navParamDeck.questions.length} cards</Text>
+        </View>
+        <View style={styles.actionButtons}>
+          <Button
+            onPress={() => console.log("go Add card")}
+            title="Add card"
+          />
+          <Button
+            onPress={onStartQuiz}
+            title="Start Quiz"
+          />
         </View>
       </View>
-    )
-  }
+    </View>
+  );
 };
+
+DeckDetailScreen.navigationOptions = {
+  headerTitle: 'Deck detail',
+}
 
 const styles = StyleSheet.create({
   container: {
