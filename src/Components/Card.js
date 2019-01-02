@@ -26,7 +26,7 @@ export default Card = (props) => {
       <TouchableOpacity 
         style={styles.incorrectButton}
         activeOpacity={0.5}
-        onPress = {() => console.log("go Incorrect")}
+        onPress = {props.onInCorrect}
         >
         <Text style={styles.textResponseButton}>{"Incorrect"}</Text>
       </TouchableOpacity>

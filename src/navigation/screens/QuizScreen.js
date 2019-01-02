@@ -7,35 +7,53 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import { Card } from '../../Components';
+import { Card, QuizComplete } from '../../Components';
 
 // Displays the percentage correct once the quiz is complete
 // DONE the number of cards left in the quiz
 export default class QuizScreen extends React.Component {
   state = {
-    cardCounter: 0,
+    cardCounter      : 0,
+    correctCounter   : 0,
+    inCorrectCounter : 0,
   }
   
   navParamDeck = this.props.navigation.getParam('deck');
   
-  onCorrect = () => {
-    if(this.state.cardCounter <= this.navParamDeck.questions.length - 2){
+  _response = (correct) => {
+    if(this.state.cardCounter <= this.navParamDeck.questions.length - 1){
       this.setState((prevState) => {
-        return ({ cardCounter: prevState.cardCounter + 1 });
+        const cardCounter = prevState.cardCounter + 1
+        const correctCounter   = correct ? prevState.correctCounter + 1 : prevState.correctCounter;
+        const inCorrectCounter = !correct ? prevState.inCorrectCounter + 1 : prevState.inCorrectCounter;
+        return ({ cardCounter, correctCounter, inCorrectCounter });
       });
-    }else{
-      Alert.alert('This deck do not have more cards');
     }
   }
   
+  onCorrect   = () => this._response(true);
+  onInCorrect = () => this._response(false);
+  
   render() {
+    // console.log(this.state);
+    console.log(this.state.cardCounter);
+    console.log(this.navParamDeck.questions.length);
     return (
       <View style={styles.container}>
-        <Card
-          cardCounter={this.state.cardCounter}
-          navParamDeck={this.navParamDeck}
-          onCorrect={this.onCorrect}
-        />
+        {this.state.cardCounter <= (this.navParamDeck.questions.length - 1) ? (
+          <Card
+            cardCounter=  {this.state.cardCounter}
+            navParamDeck= {this.navParamDeck}
+            onCorrect=    {this.onCorrect}
+            onInCorrect=  {this.onInCorrect}
+          />
+        ):(
+          <QuizComplete
+            cardCounter=      {this.state.cardCounter}
+            correctCounter=   {this.state.correctCounter}
+            inCorrectCounter= {this.state.inCorrectCounter}
+          />
+        )}
       </View>
     );
   }
