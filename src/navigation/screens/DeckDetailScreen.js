@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: 10,
-    marginLeft: 15,
-    marginRight: 15,
+    marginHorizontal: 15,
   },
   deckInfo: {
     flex: 1,

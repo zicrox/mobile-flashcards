@@ -7,14 +7,25 @@ import {
 
 export default QuizComplete = (props) => (
   <View style={styles.card}>
-    <View style={{flex: 1, alignSelf: 'stretch', marginTop: 40}}>
+    <View style={{flex: 1, marginTop: 40}}>
       <Text style={styles.textTitle}>{"Quiz complete!"}</Text>
     </View>
-    <View style={{flex: 3}}>
-      <Text style={[styles.textTitle, {margin:10}]}>{"Stats:"}</Text>
-      <Text style={styles.textStats}>{"Total cards: "+props.cardCounter}</Text>
-      <Text style={styles.textStats}>{"Correct: "+props.correctCounter}</Text>
-      <Text style={styles.textStats}>{"Incorrect: "+props.inCorrectCounter}</Text>
+    <View style={{flex: 3, alignSelf: 'stretch'}}>
+    <View style={{backgroundColor: '#DDEBF8', borderRadius: 10, margin: 30, paddingVertical: 15}}>
+      <Text style={[styles.textTitle, {margin:10}]}>{"Stats"}</Text>
+      <View style={styles.stats}>
+        <Text style={styles.textStats}>{"Correct: "}</Text>
+        <Text style={styles.textStats}>{props.correctCounter}</Text>
+      </View>
+      <View style={styles.stats}>
+        <Text style={styles.textStats}>{"Incorrect: "}</Text>
+        <Text style={styles.textStats}>{props.inCorrectCounter}</Text>
+      </View>
+      <View style={styles.stats}>
+        <Text style={styles.textStats}>{"Total cards: "}</Text>
+        <Text style={styles.textStats}>{props.cardCounter}</Text>
+      </View>
+    </View>
     </View>
   </View>
 );
@@ -25,8 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#88bea3',
     alignItems: 'center',
     margin: 10,
-    marginLeft: 15,
-    marginRight: 15,
+    marginHorizontal: 15,
   },
   textTitle: {
     fontSize: 20,
@@ -37,6 +47,14 @@ const styles = StyleSheet.create({
   textStats: {
     fontSize: 18,
     color: '#696c6f',
-    alignSelf: 'center',
+  },
+  stats: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    margin: 15,
+    marginHorizontal: 35,
+    // backgroundColor: 'white',
   },
 });

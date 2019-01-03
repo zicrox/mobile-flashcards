@@ -35,9 +35,6 @@ export default class QuizScreen extends React.Component {
   onInCorrect = () => this._response(false);
   
   render() {
-    // console.log(this.state);
-    console.log(this.state.cardCounter);
-    console.log(this.navParamDeck.questions.length);
     return (
       <View style={styles.container}>
         {this.state.cardCounter <= (this.navParamDeck.questions.length - 1) ? (
@@ -78,8 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f1f1ba',
     alignItems: 'center',
     margin: 10,
-    marginLeft: 15,
-    marginRight: 15,
+    marginHorizontal: 15,
   },
   textTitle: {
     fontSize: 20,

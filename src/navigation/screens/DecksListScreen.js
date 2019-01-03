@@ -55,8 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDEBF8',
     alignItems: 'center',
     margin: 10,
-    marginLeft: 15,
-    marginRight: 15,
+    marginHorizontal: 15,
     padding: 5,
   },
   touchableOpacity: {
