@@ -7,39 +7,62 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default Card = (props) => { 
-  // console.log(props);
-  return (
-  <View style={styles.card}>
-    <View style={{flex: 1, alignSelf: 'stretch'}}>
-      <Text style={styles.textCardNumber}>{(props.cardCounter+1)+"/"+props.navParamDeck.questions.length}</Text>
-      <Text style={styles.textTitle}>{props.navParamDeck.title}</Text>
-    </View>
-    <View style={{flex: 3}}>
-      <Text style={styles.textQuestion}>{props.navParamDeck.questions[props.cardCounter].question}</Text>
-      <Button
-        onPress={() => console.log("go Answer")}
-        title="Answer"
-      />
-    </View>
-    <View style={styles.actionButtons}>
-      <TouchableOpacity 
-        style={styles.incorrectButton}
-        activeOpacity={0.5}
-        onPress = {props.onInCorrect}
-        >
-        <Text style={styles.textResponseButton}>{"Incorrect"}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.correctButton}
-        activeOpacity={0.5}
-        onPress = {props.onCorrect}
-        >
-        <Text style={styles.textResponseButton}>{"Correct"}</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-)};
+export default class Card extends React.Component {
+  state = {
+    showAnswer: false,
+  }
+  
+  onLeave      = () => {this.setState(() => ({showAnswer: false}))};
+  onShowAnswer = () => {this.setState((prevState) => ({showAnswer: !prevState.showAnswer}))};
+  onCorrect    = () => {this.props.onCorrect();   this.onLeave()};
+  onInCorrect  = () => {this.props.onInCorrect(); this.onLeave()};
+  
+  render() {
+      return (
+      <View style={styles.card}>
+        <View style={{flex: 1, alignSelf: 'stretch'}}>
+          <Text style={styles.textCardNumber}>{(this.props.cardCounter+1)+"/"+this.props.navParamDeck.questions.length}</Text>
+          <Text style={styles.textTitle}>{this.props.navParamDeck.title}</Text>
+        </View>
+        <View style={{flex: 3}}>
+          {this.state.showAnswer ? (
+            <React.Fragment>
+              <Text style={styles.textAnswer}>{this.props.navParamDeck.questions[this.props.cardCounter].answer}</Text>
+              <Button
+                onPress={this.onShowAnswer}
+                title="Question"
+              />
+            </React.Fragment>
+          ):(
+            <React.Fragment>
+              <Text style={styles.textQuestion}>{this.props.navParamDeck.questions[this.props.cardCounter].question}</Text>
+              <Button
+                onPress={this.onShowAnswer}
+                title="Answer"
+              />
+            </React.Fragment>
+          )}
+        </View>
+        <View style={styles.actionButtons}>
+          <TouchableOpacity 
+            style={styles.incorrectButton}
+            activeOpacity={0.5}
+            onPress = {this.onInCorrect}
+            >
+            <Text style={styles.textResponseButton}>{"Incorrect"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.correctButton}
+            activeOpacity={0.5}
+            onPress = {this.onCorrect}
+            >
+            <Text style={styles.textResponseButton}>{"Correct"}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -58,6 +81,11 @@ const styles = StyleSheet.create({
   textQuestion: {
     fontSize: 18,
     fontWeight: 'bold',
+    margin: 20,
+  },
+  textAnswer: {
+    fontSize: 16,
+    color: 'grey',
     margin: 20,
   },
   textCardNumber: {

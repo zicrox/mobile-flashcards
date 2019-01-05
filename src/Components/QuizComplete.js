@@ -6,9 +6,7 @@ import {
   Button,
 } from 'react-native';
 
-export default QuizComplete = (props) => {
-  console.log(props);
-  return(
+export default QuizComplete = (props) => (
   <View style={styles.card}>
     <View style={{flex: 1, marginTop: 40}}>
       <Text style={styles.textTitle}>{"Quiz complete!"}</Text>
@@ -37,7 +35,7 @@ export default QuizComplete = (props) => {
       />
     </View>
   </View>
-)};
+);
 
 const styles = StyleSheet.create({
   card: {
