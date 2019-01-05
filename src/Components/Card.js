@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f1f1ba',
     alignItems: 'center',
-    margin: 10,
+    margin: 30,
     marginHorizontal: 15,
   },
   textTitle: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   textQuestion: {
     fontSize: 18,
     fontWeight: 'bold',
-    margin: 10,
+    margin: 20,
   },
   textCardNumber: {
     fontSize: 17,

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ABCDEF',
     alignItems: 'stretch',
-    paddingTop: 20,
+    paddingTop: 10,
   },
   textTitle: {
     fontSize: 20,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDEBF8',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 10,
+    margin: 30,
     marginHorizontal: 15,
   },
   deckInfo: {
