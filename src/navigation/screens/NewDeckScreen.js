@@ -44,10 +44,8 @@ export default class NewDeckScreen extends React.Component {
     return (
       <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
         <View style={styles.container}>
-          <View style={styles.containerTitle}>
+          <View style={styles.containerInputs}>
             <Text style={styles.textTitle}>What is the title of your new deck?</Text>
-          </View>
-          <View style={{padding: 20}}>
             <TextInput
               style={styles.textInput}
               onChangeText={(textInput) => this.setState({textInput: textInput})}
@@ -55,11 +53,13 @@ export default class NewDeckScreen extends React.Component {
               value={this.state.textInput}
             />
           </View>
-          <View style={styles.submitButton}>
-            <Button
-              onPress={this.submit}
-              title="Submit"
-            />
+          <View style={{flex: 1}}>
+            <View style={styles.submitButton}>
+              <Button
+                onPress={this.submit}
+                title="Submit"
+              />
+            </View>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -73,13 +73,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#EFABCD',
     justifyContent: 'center',
   },
-  containerTitle: {
-    alignItems: 'center',
-    paddingBottom: 10,
+  containerInputs: {
+    flex: 7,
+    margin: 25,
+    justifyContent: 'center',
   },
   textTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginVertical: 40,
   },
   textInput: {
     height: 40,

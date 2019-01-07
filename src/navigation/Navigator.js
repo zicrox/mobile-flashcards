@@ -12,13 +12,15 @@ import {
   DecksListScreen,
   NewDeckScreen,
   DeckDetailScreen,
+  AddCardScreen,
   QuizScreen
 } from './screens';
 
 const DecksScreen = createStackNavigator({
-  DecksList  : { screen: DecksListScreen },
-  DeckDetail : { screen: DeckDetailScreen },
-  QuizScreen : { screen: QuizScreen },
+  DecksList     : { screen: DecksListScreen },
+  DeckDetail    : { screen: DeckDetailScreen },
+  AddCardScreen : { screen: AddCardScreen },
+  QuizScreen    : { screen: QuizScreen },
 },
 {
   navigationOptions: {

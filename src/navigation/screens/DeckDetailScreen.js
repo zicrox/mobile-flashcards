@@ -21,6 +21,10 @@ export default DeckDetailScreen = (props) => {
       Alert.alert('This deck do not have cards');
   }
   
+  const onAddCard = () => {
+    props.navigation.navigate('AddCardScreen', { 'deck': navParamDeck });
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.deck}>
@@ -30,7 +34,7 @@ export default DeckDetailScreen = (props) => {
         </View>
         <View style={styles.actionButtons}>
           <Button
-            onPress={() => console.log("go Add card")}
+            onPress={onAddCard}
             title="Add card"
           />
           <Button
