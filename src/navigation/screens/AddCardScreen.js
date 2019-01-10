@@ -16,6 +16,8 @@ export default class AddCardScreen extends React.Component {
     title: 'New Card',
   };
   
+  navParamDeck = this.props.navigation.getParam('deck');
+  
   state = { 
     textQuestion : 'Question',
     textAnswer   : 'Answer',
@@ -23,8 +25,14 @@ export default class AddCardScreen extends React.Component {
     focusAnswer : false,
   };
   
-  // TODO finish the interface and the NewDeck (more space is good)
-  // TODO make addCard method in App.js
+  _addCard = () => this.props.screenProps.addCard({
+    question: this.state.textQuestion,
+    answer: this.state.textAnswer,
+    deckTitle: this.navParamDeck.title,
+  })
+    
+  
+  
   submit = () => {
     if(!this.state.focusQuestion || !this.state.textQuestion.replace(/^\s+/g, '').length){
       Alert.alert('Card question is required');
@@ -34,15 +42,14 @@ export default class AddCardScreen extends React.Component {
       Alert.alert('Card answer is required');
       return;
     }
-    // if(this.props.screenProps.addDeck({title: this.state.textQuestion})) {
-    if(true) {
+    if(this._addCard()) {
       Keyboard.dismiss();
       // Timeout for dismiss the damned keyboard
       setTimeout(() => {
-        Alert.alert('New deck created');
+        Alert.alert('New card created', '',[{onPress: () => this.props.navigation.navigate('DecksList')}]);
       }, 300);
     } else {
-      Alert.alert('This deck arleady exist');
+      Alert.alert('This card arleady exist');
     }
   }
   

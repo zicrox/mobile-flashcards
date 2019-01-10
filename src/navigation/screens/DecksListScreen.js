@@ -10,9 +10,6 @@ import {
 
 export default DecksListScreen = (props) => (
   <View style={styles.container}>
-    {/* <View style={{alignItems: 'center', paddingTop: 10}}>
-      <Text style={styles.textTitle}>Your decks list</Text>
-    </View> */}
     <View style={styles.container}>
       <ScrollView>
         {Object.entries(props.screenProps.state).map((deck) => (
