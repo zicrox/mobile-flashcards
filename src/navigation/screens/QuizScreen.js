@@ -9,8 +9,6 @@ import {
 } from 'react-native';
 import { Card, QuizComplete } from '../../Components';
 
-// Displays the percentage correct once the quiz is complete
-// DONE the number of cards left in the quiz
 export default class QuizScreen extends React.Component {
   state = {
     cardCounter      : 0,

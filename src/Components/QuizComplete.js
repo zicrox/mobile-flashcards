@@ -26,6 +26,10 @@ export default QuizComplete = (props) => (
           <Text style={styles.textStats}>{"Total cards: "}</Text>
           <Text style={styles.textStats}>{props.cardCounter}</Text>
         </View>
+        <View style={styles.stats}>
+          <Text style={styles.textStats}>{"Score: "}</Text>
+          <Text style={styles.textStats}>{((props.correctCounter/props.cardCounter)*100).toFixed(2)+" %"}</Text>
+        </View>
       </View>
     </View>
     <View style={{flex: 1, justifyContent: 'center'}}>
@@ -48,7 +52,6 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
     alignSelf: 'center',
   },
   textStats: {
