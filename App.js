@@ -23,7 +23,7 @@ export default class App extends React.Component {
   // Cards stored in nested (one level) array of cards.
   // We use the Immutable Update Patterns (redux style): 
   // https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns
-  addCard = (data) => {
+  addCard = (data, callback) => {
     this.setState((prevState) => {
       const questionToAdd = {
         question: data.question,
@@ -34,8 +34,7 @@ export default class App extends React.Component {
       return {
         [data.deckTitle]:{...prevState[data.deckTitle], questions: questions}
       }
-    })
-    return true;
+    }, callback );
   }
   
   render() {

@@ -25,12 +25,13 @@ export default class AddCardScreen extends React.Component {
     focusAnswer : false,
   };
   
-  _addCard = () => this.props.screenProps.addCard({
+  // This method use a callback from setState to ensure the state is updated before show and pass params to next screen
+  // This callback seems not necesary if the next screen use the "app" state instead of params
+  _addCard = (callback) => this.props.screenProps.addCard({
     question: this.state.textQuestion,
     answer: this.state.textAnswer,
     deckTitle: this.navParamDeck.title,
-  })
-    
+  }, callback );
   
   
   submit = () => {
@@ -42,15 +43,15 @@ export default class AddCardScreen extends React.Component {
       Alert.alert('Card answer is required');
       return;
     }
-    if(this._addCard()) {
+    this._addCard(() => {
       Keyboard.dismiss();
-      // Timeout for dismiss the damned keyboard
-      setTimeout(() => {
-        Alert.alert('New card created', '',[{onPress: () => this.props.navigation.navigate('DecksList')}]);
-      }, 300);
-    } else {
-      Alert.alert('This card arleady exist');
-    }
+        // Timeout for dismiss the damned keyboard
+        setTimeout(() => {
+          // console.log(this.props.screenProps.state[this.navParamDeck.title]);
+          // Alert.alert('New card created', '',[{onPress: () => this.props.navigation.navigate('DecksList')}]);
+          Alert.alert('New card created', '',[{onPress: () => this.props.navigation.navigate('DeckDetail', { 'deck': this.props.screenProps.state[this.navParamDeck.title] })}]);
+        }, 300);
+    });
   }
   
   render() {
