@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import { Card, QuizComplete } from '../../Components';
+import { Card, QuizComplete } from '../../components';
 
 export default class QuizScreen extends React.Component {
   state = {

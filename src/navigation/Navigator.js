@@ -23,20 +23,21 @@ const DecksScreen = createStackNavigator({
   QuizScreen    : { screen: QuizScreen },
 },
 {
+  // navigationOptions property: These navigationOptions are the default options for screens within that navigator.
   navigationOptions: {
     headerStyle: {
       backgroundColor: '#b99ad8',
     },
-    // headerTintColor: '#fff',
     headerTitleStyle: {
-      // fontWeight: 'bold',
       color: 'white'
     },
+    // headerTintColor: '#fff',
     // headerBackTitleStyle: {
     //   color: 'green',
     // },
   },
 });
+// These are the options that are used by the navigator that renders the DecksScreen, in this case is a tab navigator.
 DecksScreen.navigationOptions = ({ navigation }) => {
   const tabBarLabel = 'Decks';
   const tabBarIcon = ({ tintColor }) => (<Ionicons name="ios-list" size={26} color={tintColor} />)
